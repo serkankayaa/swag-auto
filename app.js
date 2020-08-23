@@ -6,11 +6,9 @@ var logger = require('morgan');
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
 var swaggerUI = require('swagger-ui-express');
-var swaggerDocument = require('./swagger.json');
 var app = express();
-
-var gen = require('./utility/autoGen');
-gen.readFile("Swag Api", "Önemli açıklama apidir");
+var { swagAuto, FileType } = require('./utility/autoGen');
+var swaggerDocument = swagAuto("Yaml Deneme Title", "Yaml Deneme Description", FileType.YAML);
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
