@@ -7,7 +7,7 @@ var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
 var swaggerUI = require('swagger-ui-express');
 var app = express();
-var { swagAuto, FileType } = require('./utility/autoGen');
+var { swagAuto, FileType, getRoutes } = require('./utility/autoGen');
 var swaggerDocument = swagAuto("Yaml Deneme Title", "Yaml Deneme Description", FileType.YAML);
 
 // view engine setup
@@ -39,5 +39,7 @@ app.use(function(err, req, res, next) {
   res.status(err.status || 500);
   res.render('error');
 });
+
+getRoutes(app);
 
 module.exports = app;
